@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BayeurController;
 use App\Http\Controllers\EmprunteurController;
@@ -9,27 +10,44 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route des Admin protégé
-// Route::middleware(['auth', 'admin'])->group(function(){
-//     Route::get('/admin',[AdminController::class, 'dashboardAdmin'])->name('admin.dashAdmin');
-// });
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
-Route::get('/admin', function (){
-    return view('dashAdmin');
-})->middleware('admin');
-// Route pour le Bayeur
 Route::middleware(['auth'])->group(function () {
-    Route::get('/bayeur/dashboard', [BayeurController::class, 'dashboard'])->name('bayeur.dashboard');
+    Route::get('/dashEmprunt', [DashboardController::class, 'emprunteur'])->name('dashEmprunt');
+    Route::get('/dashBayeur', [DashboardController::class, 'bayeur'])->name('dashBayeur');
 });
 
-// Route pour l'Emprunteur
-Route::middleware(['auth'])->group(function () {
-    Route::get('/emprunteur/dashboard', [EmprunteurController::class, 'dashboard'])->name('emprunteur.dashboard');
+
+// Authentification de l'admin.
+Route::get('/adminAuth', function () {
+    return view('admin.adminAuth'); // Page d'authentification
+})->name('adminAuth');
+Route::post('/adminAuth', function (Request $request) {
+    $username = $request->input('username');
+    $password = $request->input('password');
+
+    if ($username === 'raven' && $password === '1234') {
+        session(['user' => $username]); // Stocker la session utilisateur
+        return redirect()->route('admin'); // Rediriger vers admin
+    } else {
+        return back()->withErrors(['msg' => 'Identifiants incorrects']);
+    }
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Connexion a l'admin si l'authentification est correct.
+Route::get('/admin', function () {
+    if (!session()->has('user')) {
+        return redirect()->route('adminAuth'); // Rediriger si non connecté
+    }
+    return view('admin.admin'); // Page admin
+})->name('admin');
+
+// Deconnexion a l'admin.
+Route::get('/adminLogout', function () {
+    session()->forget('user'); // Détruire la session
+    return redirect()->route('adminAuth'); // Rediriger vers login
+})->name('adminLogout');
+// -----------------------------------------------
 
 
 

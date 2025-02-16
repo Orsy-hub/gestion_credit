@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class IsAdmin
@@ -15,15 +16,15 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Vérifier si l'admin est bien authentifié
-        if (
-            $request->getUser() === 'admin@example.com' &&
-            $request->getPassword() === 'MotDePasseAdmin'
-        ) {
-            return $next($request);
-        }
+        // Vérifie si l'utilisateur est connecté
+        // $user = Auth::user();
 
-        // Si les identifiants sont faux, renvoyer une réponse non autorisée
-        return response()->json(['message' => 'Accès refusé'], 401);
+        // Vérifie si l'utilisateur est bien "admin"
+        if ($request->input('token') !== 'mohammed@gmail.com') {
+            return redirect('/welcome')->with('error', 'Accès réservé à l\'administrateur.');
+        }
+        
+        // Redirige vers la page de connexion si l'utilisateur n'est pas admin
+        return $next($request);
     }
 }
