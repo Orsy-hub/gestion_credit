@@ -1,14 +1,15 @@
 <?php
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BayeurController;
 use App\Http\Controllers\EmprunteurController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 // Route de direction vers la page d'accueil.
 Route::get('/', function () {
@@ -64,7 +65,6 @@ Route::get('/adminLogout', function () {
     session()->forget('user'); // Détruire la session
     return redirect()->route('adminAuth'); // Rediriger vers login
 })->name('adminLogout');
-// -----------------------------------------------
 
 
 
@@ -74,26 +74,6 @@ Route::get('/adminLogout', function () {
 
 
 
-
-
-
-
-
-
-
-// Route pour le Bayeur
-Route::middleware(['auth'])->group(function () {
-    Route::get('/bayeur/dashboard', [BayeurController::class, 'dashboard'])->name('bayeur.dashboard');
-});
-
-// Route pour l'Emprunteur
-Route::middleware(['auth'])->group(function () {
-    Route::get('/emprunteur/dashboard', [EmprunteurController::class, 'dashboard'])->name('emprunteur.dashboard');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 
 
