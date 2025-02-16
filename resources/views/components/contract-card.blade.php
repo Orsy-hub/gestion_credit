@@ -1,14 +1,19 @@
 <div class="space-y-10 md:space-y-16">
   <article class="flex flex-col lg:flex-row lg:gap-10 lg:p-8 pb-8 md:pb-16 border-b">
-    <div class="lg:w-[700px] lg:h-[300px] flex items-center justify-center flex-col gap-2 bg-slate-100 transition-colors duration-300 hover:bg-slate-300 p-5 cursor-pointer rounded-xl">
+    <div class="lg:w-[700px] lg:h-[300px] flex items-center justify-center flex-col gap-2 text-slate-400 bg-slate-100 transition-colors duration-300 hover:text-slate-600 hover:bg-slate-300 p-5 cursor-pointer rounded-xl">
       <div class="bg-slate-600 w-[80px] h-[80px] flex justify-center items-center rounded-full text-white text-xl">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
         </svg>
       </div>
-      <strong class="text-xl">
-        Kami
-      </strong>
+      <div class="flex flex-col items-center">
+        <strong class="text-xl text-slate-800">
+          Kami
+        </strong>
+        <em class="not-italic">
+          ravenkami@gmail.com
+        </em>
+      </div>
     </div>
     <section class=" flex flex-col justify-between pb-5">
         <h1 class="relative w-min font-bold font-viga text-slate-900 text-3xl lg:text-5xl leading-tight cursor-pointer after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-slate-900 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">

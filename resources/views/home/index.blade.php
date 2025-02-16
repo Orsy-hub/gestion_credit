@@ -12,7 +12,7 @@
     <!-- Entete du site. -->
     @include('partials.header.index')
 
-    @include('components.contractCard', [
+    @include('components.contract-card', [
         'image' => "",
         'title' => "Titre",
         'conditions' => "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex doloremque neque tenetur eum facilis in recusandae asperiores voluptatum animi autem quos molestiae vero sint, vel consectetur totam deleniti quas. Labore!",

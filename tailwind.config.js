@@ -11,8 +11,15 @@ export default {
 
     theme: {
         extend: {
+            screens: {
+                normal: '430px',
+            },
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                poppins: ['Poppins', 'sans-serif'],
+                viga: ['Viga', 'sans-serif'],
+                ubuntu: ['Ubuntu', 'sans-serif'],
+                lobster: ['Lobster', 'sans-serif']
             },
         },
     },
