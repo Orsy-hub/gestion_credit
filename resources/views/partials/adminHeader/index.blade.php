@@ -7,21 +7,7 @@
         </svg>
         <strong class="hidden sm:block">{{ config('app.name') }}</strong>
       </a>
-    </div>
-    <form action="" class="border-b hidden sm:flex sm:items-center">
-      <input 
-        type="search" 
-        name="search" 
-        id="search" 
-        placeholder="Recherhcer un contract"
-        class="border-none border-b"
-        />
-      <button>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-        </svg>
-      </button>
-    </form>
+    </div>  
     <div class="flex items-center gap-10">
       <button class="flex items-center gap-2 text-red-400 active:text-red-800">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -35,11 +21,14 @@
       </button>
       <div x-data="{ open: false }">
         <!-- Bouton du menu -->
-        <button @click="open = !open" class="border-2 px-2 py-2 rounded-lg transition-colors duration-300 hover:bg-slate-200 active:bg-slate-100">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-        </button>
+        <div class="flex items-center gap-3">
+          <button @click="open = !open" class="border-2 px-2 py-2 rounded-full transition-colors duration-300 hover:bg-slate-200 active:bg-slate-100">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+              <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <strong>Raven KAMI</strong>
+        </div>
 
         <!-- Section latérale du menu -->
         <div x-show="open" x-transition class="absolute border top-5 right-2 w-[400px] h-[700px] z-20 p-5 bg-slate-100 shadow-md rounded-lg">
