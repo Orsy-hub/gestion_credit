@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 @extends('admin.index');
@@ -39,3 +40,4 @@
     </main>
 @endsection
 
+=

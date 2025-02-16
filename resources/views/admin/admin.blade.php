@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 @extends('admin.index')
 @section('main')
@@ -8,3 +9,17 @@
         </header>
     </main>
 @endsection
+=======
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+    <h2>Bienvenue, Raven</h2>
+    <a href="{{ route('adminLogout') }}">Déconnexion</a>
+</body>
+</html>
+>>>>>>> 95256a37cbf370e428d666628135246a1d321018
