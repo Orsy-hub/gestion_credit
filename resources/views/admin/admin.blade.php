@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 @extends('admin.index')
 @section('main')
     <main class="w-full h-full bg-[#fff]">
@@ -10,3 +8,4 @@
     </main>
 @endsection
 =======
+
