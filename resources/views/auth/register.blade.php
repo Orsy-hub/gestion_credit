@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register.store') }}"> {{--Mettre la route se trouvant dans web.php--}}
         @csrf
 
         <!-- Name -->
@@ -16,13 +16,10 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        {{-- Rêle --}}
+        {{-- Rôle --}}
         <div>
             <label for="role" class=" block">Rôle</label>
-            <select name="role" id="role" required>
-                <option value="Bayeur">Bayeur</option>
-                <option value="Emprunteur" selected>Emprunteur</option>
-            </select>
+            <input class="w-full rounded-lg border-gray-300" type="text" name="role" value="" placeholder="Emprunteur ou Bayeur">
         </div>        
 
         <!-- Password -->
@@ -47,6 +44,7 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
+        <p class="mt-2">Pour le rôle saisissez: Emprunteur ou Bayeur</p>
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">

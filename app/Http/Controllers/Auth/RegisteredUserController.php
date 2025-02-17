@@ -27,15 +27,20 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+    
+
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $request->merge(['role' => $request->role ?? 'Emprunteur']);
+        // Valider les données
+        $valider=$request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role'=> ['required', 'in:Bayeur, Emprunteur'] // Ajout du chmp role
+            'role' => ['required', 'string', 'max:255'] // Ajout du champ role
         ]);
         
+        // Créer l'utilisateur
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -45,6 +50,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        // Connecter l'utilisateur après inscription
         Auth::login($user);
 
         return redirect(route($user->role==='Bayeur'?'dashBayeur':'dashEmprunteur'));
