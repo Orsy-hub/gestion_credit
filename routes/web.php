@@ -82,6 +82,3 @@ Route::get('/adminLogout', function () {
     session()->forget('user'); // Détruire la session
     return redirect()->route('adminAuth'); // Rediriger vers login
 })->name('adminLogout');
-
-
-
