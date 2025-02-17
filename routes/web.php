@@ -3,13 +3,30 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BayeurController;
-use App\Http\Controllers\EmprunteurController;
+use App\Http\Controllers\DashBoardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+
+// Route du connexion et d'inscription de l'emprunteur ou du Bayeur
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+
+Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
+
+// Afficher le formulaire de connexion
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+
+// Traiter la connexion
+Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashEmprunt', [DashboardController::class, 'emprunteur'])->name('dashEmprunteur');
+    Route::get('/dashBayeur', [DashboardController::class, 'bayeur'])->name('dashBayeur');
 });
-
 
 // Route de direction vers la page d'accueil.
 Route::get('/', function () {
@@ -68,13 +85,3 @@ Route::get('/adminLogout', function () {
 
 
 
-
-
-
-
-
-
-
-
-
-require __DIR__.'/auth.php';

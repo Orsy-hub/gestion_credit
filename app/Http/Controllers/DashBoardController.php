@@ -10,7 +10,7 @@ class DashBoardController extends Controller
 {
     //
     public function emprunteur(){
-        return view('dashEmprunter');
+        return view('dashEmprunteur');
     }
 
     public function bayeur (){

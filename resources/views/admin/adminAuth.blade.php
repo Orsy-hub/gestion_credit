@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auth</title>
-</head>
-<body>
-    <h2>Page de Connexion</h2>
-=======
-<<<<<<< HEAD
->>>>>>> edcd0cad68526b034bf8b340b70324abaceb42f4
-
 
 @extends('admin.index');
 @section('titre')
