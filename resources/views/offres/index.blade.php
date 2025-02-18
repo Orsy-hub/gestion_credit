@@ -48,33 +48,6 @@
       </section>
 
     </div>
-
-    {{-- <div class="max-w-xs mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-      <div class="p-4">
-        <!-- Titre de l'offre -->
-        <h2 class="text-xl font-semibold text-gray-800 mb-2">Prêt pour projet immobilier</h2>
-        
-        <!-- Détails de l'offre -->
-        <p class="text-gray-600 text-sm">Montant : <strong>50,000 €</strong></p>
-        <p class="text-gray-600 text-sm">Date limite : <strong>15 Mars 2025</strong></p>
-        <p class="text-gray-600 text-sm">Taux d'intérêt : <strong>5% fixe</strong></p>
-        <p class="text-gray-600 text-sm">Conditions : <strong>Remboursement sur 24 mois</strong></p>
-        <p class="text-gray-600 text-sm">Nom de l'emprunteur : <strong>Jean Dupont</strong></p>
-        <p class="text-gray-600 text-sm">Email de l'emprunteur : <strong>jean.dupont@example.com</strong></p>
-      </div>
-      
-      <!-- Boutons de modification et suppression -->
-      <div class="bg-gray-100 p-4 flex justify-between">
-        <!-- Modifier l'offre -->
-        <a href="#" class="inline-block px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-500">Modifier l'offre</a>
-        
-        <!-- Supprimer l'offre -->
-        <a href="#" class="inline-block px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-500" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette offre ?')">Supprimer l'offre</a>
-      </div>
-    </div> --}}
-    
-    
-    
   </div>
 </body>
 </html>

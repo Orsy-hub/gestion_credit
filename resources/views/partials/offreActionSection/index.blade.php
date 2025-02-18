@@ -67,23 +67,6 @@
       </li>
     </ul>
   </div>
-  <div 
-    x-show="isOpen" 
-    class="fixed inset-0 bg-black/50 flex items-center justify-center"
-    @click="isOpen = false"
-  >
-    <div 
-      class="bg-white p-6 rounded-lg shadow-lg w-96"
-      @click.stop
-    >
-      <h3 class="text-lg font-semibold mb-4">Créer une nouvelle offre</h3>
-      <form>
-        <label class="block mb-2">Titre</label>
-        <input type="text" class="w-full border p-2 rounded mb-4">
-        <label class="block mb-2">Prix</label>
-        <input type="number" class="w-full border p-2 rounded mb-4">
-        <button class="bg-green-800 text-white px-4 py-2 rounded hover:bg-green-600">Soumettre</button>
-      </form>
-    </div>
-  </div>
+  {{-- Section du Overlay qui contient le formulaire pour creer une offre d'emprunt. --}}
+  @include('partials.formulaireOffre.index')
 </section>
