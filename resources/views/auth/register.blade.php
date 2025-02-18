@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register.store') }}"> {{--Mettre la route se trouvant dans web.php--}}
+    <form method="POST" action="{{ route('register.store') }}" enctype="multipart/form-data"> {{--Mettre la route se trouvant dans web.php--}}
         @csrf
 
         <!-- Name -->
@@ -16,11 +16,30 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        {{-- Rôle --}}
-        <div>
-            <label for="role" class=" block">Rôle</label>
-            <input class="w-full rounded-lg border-gray-300" type="text" name="role" value="" placeholder="Emprunteur ou Bayeur">
-        </div>        
+        <!-- Rôle-->
+        <div class="mt-4">
+            <select id="role" name="role" class="w-full rounded-lg border-gray-300">
+                <option value="">Sélectionnez un rôle</option>
+                <option value="Emprunteur">Emprunteur</option>
+                <option value="Bayeur">Bayeur</option>
+            </select>
+        </div>
+        
+        <!-- Solde (visible uniquement pour Bayeur) -->
+        <div id="soldeField" style="display: none;" class="mt-4">
+            <label for="solde">Solde initial</label>
+            <input type="number" name="solde" id="solde" min="0" class="w-full rounded-lg border-gray-300">
+        </div>
+
+        <!-- Image -->
+        <div class="mt-4">
+            <x-input-label for="image" :value="__('Image de profil')" />
+            <input id="image" class="block mt-1 w-full" type="file" name="image" accept="image/*">
+            <x-input-error :messages="$errors->get('image')" class="mt-2" />
+        </div>
+
+        {{-- Champ caché de vérification --}}
+        <input type="hidden" name="verifier" value="0">
 
         <!-- Password -->
         <div class="mt-4">
@@ -56,4 +75,20 @@
             </x-primary-button>
         </div>
     </form>
+    <script>
+        document.getElementById('role').addEventListener('change', function() {
+            let soldeField = document.getElementById('soldeField');
+            let soldeInput = document.getElementById('solde');
+    
+            if (this.value === 'Bayeur') {
+                soldeField.style.display = 'block';
+                soldeInput.removeAttribute('disabled');
+            } else {
+                soldeField.style.display = 'none';
+                soldeInput.setAttribute('disabled', true);
+                soldeInput.value = '0';
+            }
+        });
+    </script>
+    
 </x-guest-layout>
