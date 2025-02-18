@@ -38,6 +38,11 @@ Route::get('/contracts', function (){
     return view('contracts.index');
 })->name('contracts');
 
+// Route de direction vers la page d'offres.
+Route::get('/offres', function (){
+    return view('offres.index');
+})->name('offres');
+
 
 /*
     Mise en place du systeme d'authentification de 
