@@ -28,19 +28,22 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 // il faut exécuter la méthode authentificated
-        return $this->authentificated($request, Auth::user());
+        // return $this->authentificated($request, Auth::user());
+
+        // Diriger vers home
+        return redirect()->route('home');
 
     }
 
-    protected function authentificated (Request $request, $user){
-        if ($user->role==='Bayeur') {
-            return redirect()->route('dashBayeur');
-        }
-        elseif($user->role==='Emprunteur'){
-            return redirect()->route('dashEmprunteur');
-        }
-        return redirect()->route('dashboard');
-    }
+    // protected function authentificated (Request $request, $user){
+    //     if ($user->role==='Bayeur') {
+    //         return redirect()->route('dashBayeur');
+    //     }
+    //     elseif($user->role==='Emprunteur'){
+    //         return redirect()->route('dashEmprunteur');
+    //     }
+    //     return redirect()->route('dashboard');
+    // }
 
     /**
      * Destroy an authenticated session.
