@@ -53,6 +53,6 @@ class RegisteredUserController extends Controller
         // Connecter l'utilisateur après inscription
         Auth::login($user);
 
-        return redirect(route($user->role==='Bayeur'?'dashBayeur':'dashEmprunteur'));
+        return redirect(route('home'));
     }
 }
