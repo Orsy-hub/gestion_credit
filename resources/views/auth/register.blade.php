@@ -17,11 +17,13 @@
         </div>
 
         <!-- Rôle-->
-        <select id="role" name="role" class="w-full rounded-lg border-gray-300">
-            <option value="">Sélectionnez un rôle</option>
-            <option value="Emprunteur">Emprunteur</option>
-            <option value="Bayeur">Bayeur</option>
-        </select>
+        <div class="mt-4">
+            <select id="role" name="role" class="w-full rounded-lg border-gray-300">
+                <option value="">Sélectionnez un rôle</option>
+                <option value="Emprunteur">Emprunteur</option>
+                <option value="Bayeur">Bayeur</option>
+            </select>
+        </div>
         
         <!-- Solde (visible uniquement pour Bayeur) -->
         <div id="soldeField" style="display: none;" class="mt-4">

@@ -60,9 +60,9 @@ class RegisteredUserController extends Controller
         ];
 
         // vérifier le champ rôle est bien bayeur
-        if ($valider['role']==='Bayeur') {
-            $data_user['solde'] = 0; // valeur initiale du solde
-        }
+        // if ($valider['role']==='Bayeur') {
+        //     $data_user['solde'] = 0; // valeur initiale du solde
+        // }
 
         $user = User::create($data_user);   // Création de l'utilisateur
         event(new Registered($user));
