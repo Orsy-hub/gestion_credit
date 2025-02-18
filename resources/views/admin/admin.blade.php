@@ -4,7 +4,7 @@
 @endsection
 @section('main')
   <main x-data="{ 
-      activeTab: 'validation',
+      activeTab: 'litiges',
       validationsCount: 3,
       litigesCount: 1,
       visitedSections: { validation: true, litiges: false }
@@ -54,14 +54,11 @@
 
     <!-- Sections -->
     <section x-show="activeTab === 'validation'" class="py-4">
-        <h3 class="text-lg font-semibold">Section de validation</h3>
-        <p>Contenu de la validation ici...</p>
+        @include('components.vadation-card')
     </section>
 
     <section x-show="activeTab === 'litiges'" class="py-4">
-        <h3 class="text-lg font-semibold">Section de litiges</h3>
-        <p>Contenu des litiges ici...</p>
+        @include('components.litige-card')
     </section>
   </main>
 @endsection
-
