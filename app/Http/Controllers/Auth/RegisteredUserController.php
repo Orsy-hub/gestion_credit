@@ -54,15 +54,10 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role'=> $request->role,    //ajout du champ role
-            'solde' => $request->role === 'Bayeur' ? $request->solde : 0,
+            'solde' => $request->role === 'Bayeur' ? $request->solde : 0, // Mettre le solde
             'image' => $imagePath,
             'verifier' => false,
         ];
-
-        // vérifier le champ rôle est bien bayeur
-        // if ($valider['role']==='Bayeur') {
-        //     $data_user['solde'] = 0; // valeur initiale du solde
-        // }
 
         $user = User::create($data_user);   // Création de l'utilisateur
         event(new Registered($user));
