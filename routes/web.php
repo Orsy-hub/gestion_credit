@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
 // Route de direction vers la page d'accueil.
 Route::get('/', function () {
     return view('home.index');
-})->name('home');
+})->middleware('auth')->name('home');
 
 // Route de direction vers la page des contracts.
 Route::get('/contracts', function (){
