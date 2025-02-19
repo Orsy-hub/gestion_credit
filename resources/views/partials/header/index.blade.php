@@ -1,4 +1,4 @@
-<div class="mb-10">
+<div class="mb-10" x-data="{ open: false }">
   <header class=" flex items-center justify-between text-slate-900">
     <div class="transition-colors duration-300 hover:bg-slate-200 rounded-full p-2 sm:p-0 sm:rounded-none sm:hover:bg-white">
       <a href="{{ route('home') }}" class="flex gap-2">
@@ -35,17 +35,26 @@
             </em>
           </span>
         </button>
-    </form>
-      <div x-data="{ open: false }">
+      </form>
+      <div>
         <!-- Bouton du menu -->
-        <button @click="open = !open" class="border-2 px-2 py-2 rounded-lg transition-colors duration-300 hover:bg-slate-200 active:bg-slate-100">
+        <button 
+          x-cloak
+          @click="open = !open" 
+          class="border-2 px-2 py-2 rounded-lg transition-colors duration-300 hover:bg-slate-200 active:bg-slate-100"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
               <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
         </button>
 
         <!-- Section latérale du menu -->
-        <div x-show="open" x-transition class="absolute border top-5 right-2 w-[400px] h-[700px] z-20 p-5 bg-slate-100 shadow-md rounded-lg">
+        <div 
+          x-cloak
+          x-show="open" 
+          x-transition.opacity
+          class="absolute border top-5 right-2 w-[400px] h-[700px] z-30 p-5 bg-slate-100 shadow-md rounded-lg"
+          >
           <span class="flex justify-end">
             <button @click="open = false" class="text-slate-900 transition-colors duration-300 hover:text-slate-600 active:text-slate-100">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -82,8 +91,15 @@
             </ul>
           </nav>
         </div>
-        <div x-show="open" @click="open = false" class="absolute w-full h-full bg-black/35 top-0 cursor-pointer left-0 z-10"></div>
-      </div>
+        <div 
+          x-cloak 
+          x-show="open" 
+          x-transition.opacity
+          @click="open = false" 
+          class="absolute w-full h-full bg-black/35 top-0 cursor-pointer left-0 z-20"
+        >
+        </div>
+        </div>
     </div>
   </header>
 </div>
