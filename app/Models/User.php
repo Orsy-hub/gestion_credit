@@ -27,6 +27,37 @@ class User extends Authenticatable
         'verifier',
     ];
 
+     /**
+     * Relation avec les emprunts (uniquement pour les emprunteurs)
+     */
+    public function emprunts()
+    {
+        return $this->hasMany(Emprunt::class, 'emprunteur_id');
+    }
+     /**
+     * Relation avec les offres de prêt (uniquement pour les bayeurs)
+     */
+    public function offres()
+    {
+        return $this->hasMany(OffrePret::class, 'bayeur_id');
+    }
+
+    /**
+     * Relation avec les litiges en tant qu'emprunteur
+     */
+    public function litigesEnTantQuEmprunteur()
+    {
+        return $this->hasMany(Litige::class, 'emprunteur_id');
+    }
+
+    /**
+     * Relation avec les litiges en tant que bayeur
+     */
+    public function litigesEnTantQueBayeur()
+    {
+        return $this->hasMany(Litige::class, 'bayeur_id');
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

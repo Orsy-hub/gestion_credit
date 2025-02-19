@@ -54,7 +54,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role'=> $request->role,    //ajout du champ role
-            'solde' => $request->role === 'Bayeur' ? $request->solde : 0, // Mettre le solde
+            'solde' => $request->role === 'Bayeur' ? $request->solde : 0, // Mettre le solde de l'emprunteur à 0 sinon la valeur saisi    
             'image' => $imagePath,
             'verifier' => false,
         ];
