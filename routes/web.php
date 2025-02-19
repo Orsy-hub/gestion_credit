@@ -11,16 +11,18 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
 
-// Route du connexion et d'inscription de l'emprunteur ou du Bayeur
+// Route Pour gerer l'inscription des utilisateur (Bayeur, Emprunteur).
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
-
 Route::post('/register', [RegisteredUserController::class, 'store'])->name('register.store');
 
-// Afficher le formulaire de connexion
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
 
-// Traiter la connexion
+// Afficher le formulaire de connexion.
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+// Traiter la connexion.
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+// Route pour deconnecter les utilisateurs (Bayeur, Emprunteur).
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
 
 
 Route::middleware(['auth'])->group(function () {

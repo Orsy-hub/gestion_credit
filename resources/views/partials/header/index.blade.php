@@ -23,16 +23,19 @@
       </button>
     </form>
     <div class="flex items-center gap-10">
-      <button class="flex items-center gap-2 text-red-400 active:text-red-800">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-        </svg>
-        <span class="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-red-400 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">
-          <em class="not-italic ">
-            deconnexion
-          </em>
-        </span>
-      </button>
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="flex items-center gap-2 text-red-400 active:text-red-800">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+          </svg>
+          <span class="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-red-400 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">
+            <em class="not-italic ">
+              deconnexion
+            </em>
+          </span>
+        </button>
+    </form>
       <div x-data="{ open: false }">
         <!-- Bouton du menu -->
         <button @click="open = !open" class="border-2 px-2 py-2 rounded-lg transition-colors duration-300 hover:bg-slate-200 active:bg-slate-100">
