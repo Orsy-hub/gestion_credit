@@ -31,7 +31,9 @@ class AuthenticatedSessionController extends Controller
         // return $this->authentificated($request, Auth::user());
 
         // Diriger vers home
-        return redirect()->route('home');
+        return redirect()->route('home', [
+            'user' => Auth::user()
+        ]);
 
     }
 

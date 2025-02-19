@@ -2,21 +2,21 @@
     <form method="POST" action="{{ route('register.store') }}" enctype="multipart/form-data"> {{--Mettre la route se trouvant dans web.php--}}
         @csrf
 
-        <!-- Name -->
+        <!-- Name. -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
-        <!-- Email Address -->
+        <!-- Email Address. -->
         <div class="mt-4">
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        <!-- Rôle-->
+        <!-- Rôle.-->
         <div class="mt-4">
             <select id="role" name="role" class="w-full rounded-lg border-gray-300">
                 <option value="">Sélectionnez un rôle</option>
@@ -25,13 +25,13 @@
             </select>
         </div>
         
-        <!-- Solde (visible uniquement pour Bayeur) -->
+        <!-- Solde (visible uniquement pour Bayeur). -->
         <div id="soldeField" style="display: none;" class="mt-4">
             <label for="solde">Solde initial</label>
             <input type="number" name="solde" id="solde" min="0" class="w-full rounded-lg border-gray-300">
         </div>
 
-        <!-- Image -->
+        <!-- Image de profile. -->
         <div class="mt-4">
             <x-input-label for="image" :value="__('Image de profil')" />
             <input id="image" class="block mt-1 w-full" type="file" name="image" accept="image/*">

@@ -7,9 +7,7 @@ use App\Http\Controllers\DashBoardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
-
-
+use App\Http\Controllers\Homecontroller;
 
 // Route Pour gerer l'inscription des utilisateur (Bayeur, Emprunteur).
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
@@ -31,9 +29,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Route de direction vers la page d'accueil.
-Route::get('/', function () {
-    return view('home.index');
-})->middleware('auth')->name('home');
+Route::get('/', [Homecontroller::class, 'index'])->middleware('auth')->name('home');
 
 // Route de direction vers la page des contracts.
 Route::get('/contracts', function (){
