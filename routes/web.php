@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Homecontroller;
+use App\Http\Controllers\OffrePretController;
 
 // Route Pour gerer l'inscription des utilisateur (Bayeur, Emprunteur).
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
@@ -37,9 +38,13 @@ Route::get('/contracts', function (){
 })->name('contracts');
 
 // Route de direction vers la page d'offres.
-Route::get('/offres', function (){
-    return view('offres.index');
-})->name('offres');
+Route::get('/offres', [OffrePretController::class, 'index'])->name('offres.index');
+// Route pour la creation de nouvelle offre d'emprunt.
+Route::post('/offres', [OffrePretController::class, 'store'])->name('offres.store');
+// Route pour effectuer la suppression de l'offre.
+Route::post('/offres/delete/{id}', [OffrePretController::class, 'destroy'])->name('offres.delete');
+// Route pour la modification d'une offre.
+Route::put('/offres/{id}', [OffrePretController::class, 'update'])->name('offres.update');
 
 
 /*

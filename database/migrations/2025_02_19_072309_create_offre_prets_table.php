@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('offre_prets', function (Blueprint $table) {
             $table->id();
             $table->foreignId('bayeur_id')->constrained('users')->onDelete('cascade');
-            $table->integer('montant');
+            $table->decimal('montant', 15, 2);
             $table->integer('taux_interet');
-            $table->date('date_offre');
+            $table->date('date_offre')->default(now()); // Date d'aujourd'hui par defaut
             $table->timestamps();
         });
     }

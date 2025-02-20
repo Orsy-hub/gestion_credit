@@ -48,6 +48,7 @@
     <!-- Menu de filtre par date -->
     <ul 
       x-show="open" 
+      x-cloak
       @click.outside="open = false"
       x-transition
       class="absolute w-[350px] p-5 translate-y-2 flex flex-col gap-3 border rounded-xl bg-white shadow-md"
