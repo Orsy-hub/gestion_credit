@@ -4,18 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\OffrePret;
 
 class Homecontroller extends Controller
 {
     /**
      * Display a listing of the resource.
+     *  Cette fonction permet de diriger l'utilisateur 
+     *  vers la page d'accueil.
      */
     public function index()
     {
-        // Cette fonction permet de diriger l'utilisateur 
-        // vers la page d'accueil.
+        // Recuperation de toutes les offres d'emprunt.
+        $offres = OffrePret::with('bayeur')->get();
         return view('home.index', [
-            'user' => Auth::user()
+            'user' => Auth::user(),
+            'offres' => $offres
         ]);
     }
 

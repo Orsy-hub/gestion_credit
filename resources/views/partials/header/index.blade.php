@@ -49,12 +49,12 @@
         </button>
 
         <!-- Section latérale du menu -->
-        <div 
+        <div
           x-cloak
-          x-show="open" 
+          x-show="open"
           x-transition.opacity
           class="absolute border top-5 right-2 w-[400px] h-[700px] z-30 p-5 bg-slate-100 shadow-md rounded-lg"
-          >
+        >
           <span class="flex justify-end">
             <button @click="open = false" class="text-slate-900 transition-colors duration-300 hover:text-slate-600 active:text-slate-100">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -80,14 +80,16 @@
                   Contracts d'emprunt
                 </strong>
               </a>
-              <a @click="open = false" href="{{ route('offres.index') }}" class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
-                </svg>
-                <strong class="relative after:absolute after:w-full after:h-1 after:bg-black after:bottom-0 after:left-0 after:rounded-full after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">
-                  Mes offres
-                </strong>
-              </a>
+              @if($user->role === 'Bayeur')
+                <a @click="open = false" href="{{ route('offres.index') }}" class="flex items-center gap-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+                  </svg>
+                  <strong class="relative after:absolute after:w-full after:h-1 after:bg-black after:bottom-0 after:left-0 after:rounded-full after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">
+                    Mes offres
+                  </strong>
+                </a>
+              @endif
             </ul>
           </nav>
         </div>
