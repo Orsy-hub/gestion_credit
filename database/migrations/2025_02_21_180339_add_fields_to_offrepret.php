@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('offre_prets', function (Blueprint $table) {
+        Schema::table('offrepret', function (Blueprint $table) {
             // Le champs pour le titre de l'offre d'emprunt.
             $table->string('titre', 100)->after('bayeur_id');
             $table->longText('conditions')->nullable()->after('titre');
             $table->date('date_limite')->nullable()->after('date_offre');
+
         });
     }
 
@@ -24,7 +25,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('offre_prets', function (Blueprint $table) {
+        Schema::table('offrepret', function (Blueprint $table) {
+            //
             $table->dropColumn(['titre', 'conditions', 'date_limite']);
         });
     }
