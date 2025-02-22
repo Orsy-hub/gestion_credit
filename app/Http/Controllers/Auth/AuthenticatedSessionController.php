@@ -50,16 +50,6 @@ class AuthenticatedSessionController extends Controller
         ]);
     }
 
-    // protected function authentificated (Request $request, $user){
-    //     if ($user->role==='Bayeur') {
-    //         return redirect()->route('dashBayeur');
-    //     }
-    //     elseif($user->role==='Emprunteur'){
-    //         return redirect()->route('dashEmprunteur');
-    //     }
-    //     return redirect()->route('dashboard');
-    // }
-
     /**
      * Destroy an authenticated session.
      */
