@@ -9,16 +9,18 @@
       </a>
     </div>  
     <div class="flex items-center gap-10">
-      <button class="flex items-center gap-2 text-red-400 active:text-red-800">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-        </svg>
-        <span class="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-red-400 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">
-          <em class="not-italic ">
-            deconnexion
-          </em>
-        </span>
-      </button>
+      <form action="{{ route("admin.logout") }}" method="get">
+        <button class="flex items-center gap-2 text-red-400 active:text-red-800">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+          </svg>
+          <span class="relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-red-400 after:scale-x-0 after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">
+            <em class="not-italic ">
+              deconnexion
+            </em>
+          </span>
+        </button>
+      </form>
       <div x-data="{ open: false }">
         <!-- Bouton du menu -->
         <div class="flex items-center gap-3">
@@ -27,11 +29,17 @@
               <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
             </svg>
           </button>
-          <strong>Raven KAMI</strong>
+          <strong>
+            {{ session('admin.username') }}
+          </strong>
         </div>
 
         <!-- Section latérale du menu -->
-        <div x-show="open" x-transition class="absolute border top-5 right-2 w-[400px] h-[700px] z-20 p-5 bg-slate-100 shadow-md rounded-lg">
+        <div 
+          x-show="open" 
+          x-transition 
+          x-cloak
+          class="absolute border top-5 right-2 w-[400px] h-[700px] z-20 p-5 bg-slate-100 shadow-md rounded-lg">
           <span class="flex justify-end">
             <button @click="open = false" class="text-slate-900 transition-colors duration-300 hover:text-slate-600 active:text-slate-100">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -68,7 +76,11 @@
             </ul>
           </nav>
         </div>
-        <div x-show="open" @click="open = false" class="absolute w-full h-full bg-black/35 top-0 cursor-pointer left-0 z-10"></div>
+        <div 
+          x-show="open" 
+          x-cloak
+          @click="open = false" 
+          class="absolute w-full h-full bg-black/35 top-0 cursor-pointer left-0 z-10"></div>
       </div>
     </div>
   </header>
