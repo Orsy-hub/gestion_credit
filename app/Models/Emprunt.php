@@ -8,7 +8,7 @@ class Emprunt extends Model
 {
     //
     use HasFactory;
-    protected $fillable = ['emprunteur_id', 'offre_pret_id', 'montant', 'date_emprunt'];
+    protected $fillable = ['emprunteur_id', 'offre_pret_id', 'montant', 'date_emprunt', 'status'];
 
     public function emprunteur () {
         return $this->belongsTo(User::class,'emprunteur_id')->where('role', 'Emprunteur');

@@ -25,6 +25,7 @@ class User extends Authenticatable
         'solde',
         'image', 
         'verifier',
+        'piece_justificative',
     ];
 
      /**

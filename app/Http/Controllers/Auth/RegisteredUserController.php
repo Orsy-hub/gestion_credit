@@ -40,12 +40,15 @@ class RegisteredUserController extends Controller
             'role' => 'required|string|in:Emprunteur,Bayeur',
             'solde' => 'nullable|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'piece_justificatif'=> 'required|image|mines:jpeg,png,jpg,|max:248',
         ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('users', 'public');
-        }
+         // Enregistrer l'image du profil s'il y en a une
+        $imagePath = $request->hasFile('image') ? $request->file('image')->store('users', 'public') : null;
+
+        // Enregistrer la pièce justificative
+        $piecePath = $request->file('piece_justificatif')->store('justificatifs', 'public');
+
 
         // Vérifier si c'est un bayeur et ajouter le champ solde puis créer le user
 
@@ -57,6 +60,7 @@ class RegisteredUserController extends Controller
             'solde' => $request->role === 'Bayeur' ? $request->solde : 0, // Mettre le solde de l'emprunteur à 0 sinon la valeur saisi    
             'image' => $imagePath,
             'verifier' => false,
+            'piece_justificatif' => $piecePath,
         ];
 
         $user = User::create($data_user);   // Création de l'utilisateur
