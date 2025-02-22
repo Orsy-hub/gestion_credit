@@ -15,7 +15,7 @@ return new class extends Migration
             //
             $table->integer('solde')->default(0)->after('role');
             $table->string('image')->nullable()->after('solde');
-            $table->boolean('verifier')->default(false)->after('image');
+            
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->dropColumn(['solde', 'image', 'verifier']);
+            $table->dropColumn(['solde', 'image']);
         });
     }
 };

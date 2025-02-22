@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->enum('status', ["En attente", 'Rejété', 'Suspendu'])->default('En attente');
+            $table->enum('status', ["en_attente", 'Rejété', 'Suspendu'])->default('en_attente')->after('image');
         });
     }
 

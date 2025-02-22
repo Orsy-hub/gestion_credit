@@ -40,6 +40,7 @@ class RegisteredUserController extends Controller
             'role' => 'required|string|in:Emprunteur,Bayeur',
             'solde' => 'nullable|numeric|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'status' => 'required|string|in:en_attente,rejeté,suspendu',
             'piece_justificatif'=> 'required|image|mines:jpeg,png,jpg,|max:248',
         ]);
 
@@ -59,7 +60,7 @@ class RegisteredUserController extends Controller
             'role'=> $request->role,    //ajout du champ role
             'solde' => $request->role === 'Bayeur' ? $request->solde : 0, // Mettre le solde de l'emprunteur à 0 sinon la valeur saisi    
             'image' => $imagePath,
-            'verifier' => false,
+            'status'=> $valider['status']?? 'en_attente',
             'piece_justificatif' => $piecePath,
         ];
 
@@ -70,11 +71,5 @@ class RegisteredUserController extends Controller
     }
 
     // Methode qui récupère les users en attente ou validés depuis la base de données
-    public function home () {
-
-        $user_attentes = User::where('verifier', false)->get();  // Users en attente
-        $user_valides = User::where('verifier', true)->get(); // Users validés
-
-        return view('home', compact('user_attentes', 'user_valides'));
-    }
+    
 }

@@ -24,7 +24,7 @@ class User extends Authenticatable
         'role',
         'solde',
         'image', 
-        'verifier',
+        'status',
         'piece_justificative',
     ];
 
