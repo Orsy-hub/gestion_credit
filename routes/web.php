@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BayeurController;
@@ -47,6 +48,50 @@ Route::post('/offres/delete/{id}', [OffrePretController::class, 'destroy'])->nam
 Route::put('/offres/{id}', [OffrePretController::class, 'update'])->name('offres.update');
 
 
+
+// Route pour avoir acces a la page admin. (Apres s'etre authentifier)
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+// Route pour avoir acces a la page d'authentification.
+Route::get('/admin/auth', [AdminController::class, 'login'])->name('admin.login');
+// Route pour le traitement de l'authentification.
+Route::post('/admin/auth', [AdminController::class, 'auth'])->name('admin.auth');
+// Route pour la deconnexion de l'admin.
+Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+// Route pour confirmer la demande d'inscription d'un utilisateur.
+Route::get('/admin/{id_user}', [AdminController::class, 'validate'])->name('admin.validate');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
     Mise en place du systeme d'authentification de 
     l'Admin (Mr Mouhamed)
@@ -58,35 +103,35 @@ Route::put('/offres/{id}', [OffrePretController::class, 'update'])->name('offres
 
 */ 
 // Route de direction vers Authentification de l'admin.
-Route::get('/adminAuth', function () {
-    return view('admin.adminAuth'); // Page d'authentification
-})->name('adminAuth');
-// Route de traitement des informations d'authentification 
-// de l'admin.
-Route::post('/adminAuth', function (Request $request) {
-    $username = $request->input('username');
-    $password = $request->input('password');
+// Route::get('/adminAuth', function () {
+//     return view('admin.adminAuth'); // Page d'authentification
+// })->name('adminAuth');
+// // Route de traitement des informations d'authentification 
+// // de l'admin.
+// Route::post('/adminAuth', function (Request $request) {
+//     $username = $request->input('username');
+//     $password = $request->input('password');
 
-    if ($username === 'raven' && $password === '1234') {
-        session(['user' => $username]); // Stocker la session utilisateur
-        return redirect()->route('admin'); // Rediriger vers admin
-    } else {
-        return back()->withErrors(['msg' => 'Identifiants incorrects']);
-    }
-});
+//     if ($username === 'raven' && $password === '1234') {
+//         session(['user' => $username]); // Stocker la session utilisateur
+//         return redirect()->route('admin'); // Rediriger vers admin
+//     } else {
+//         return back()->withErrors(['msg' => 'Identifiants incorrects']);
+//     }
+// });
 
 
-// Route de direction vers la page de l'Admin (Si l'authentification est correct).
-Route::get('/admin', function () {
-    if (!session()->has('user')) {
-        return redirect()->route('adminAuth'); // Rediriger si non connecté a 
-                                            // la page d'authentification.
-    }
-    return view('admin.admin'); // Page admin
-})->name('admin');
+// // Route de direction vers la page de l'Admin (Si l'authentification est correct).
+// Route::get('/admin', function () {
+//     if (!session()->has('user')) {
+//         return redirect()->route('adminAuth'); // Rediriger si non connecté a 
+//                                             // la page d'authentification.
+//     }
+//     return view('admin.admin'); // Page admin
+// })->name('admin');
 
-// Deconnexion a l'admin.
-Route::get('/adminLogout', function () {
-    session()->forget('user'); // Détruire la session
-    return redirect()->route('adminAuth'); // Rediriger vers login
-})->name('adminLogout');
+// // Deconnexion a l'admin.
+// Route::get('/adminLogout', function () {
+//     session()->forget('user'); // Détruire la session
+//     return redirect()->route('adminAuth'); // Rediriger vers login
+// })->name('adminLogout');

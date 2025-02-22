@@ -16,7 +16,7 @@
                 <p style="color: red;">{{ $errors->first() }}</p>
             @endif
 
-        <form action="{{ route('adminAuth') }}" method="POST" class=" w-full h-[800px] flex items-center justify-center rounded-lg">
+        <form action="{{ route('admin.login') }}" method="POST" class=" w-full h-[800px] flex items-center justify-center rounded-lg">
             @csrf
             <div class="flex-col w-2/3 bg-gray-100 px-28 py-20">
                 <div class="transition-colors duration-300 hover:bg-slate-200 rounded-full p-2 sm:p-0 sm:rounded-none sm:hover:bg-none mt-0 flex items-center justify-center">

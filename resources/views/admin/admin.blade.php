@@ -1,13 +1,13 @@
 @extends('admin.index')
 @section('header')
-  @include('partials.adminHeader.index')
+  @include('partials.adminHeader.index' )
 @endsection
 @section('main')
   <main x-data="{ 
-      activeTab: 'litiges',
-      validationsCount: 3,
+      activeTab: 'validation',
+      validationsCount: {{ $validationCount }},
       litigesCount: 1,
-      visitedSections: { validation: true, litiges: false }
+      visitedSections: { validation: false, litiges: false }
     }" class="mx-auto max-w-7xl px-4 sm:px-6 bg-[#fff]">
     <section class="border-b-2 py-2 px-3 flex items-center justify-between">
       <h2 class="text-2xl font-medium">Dashboard</h2>
@@ -53,8 +53,21 @@
     </section>
 
     <!-- Sections -->
-    <section x-show="activeTab === 'validation'" class="py-4">
-        @include('components.vadation-card')
+    <section x-show="activeTab === 'validation'" class="py-4 flex flex-col gap-10">
+      @if($validationCount === 0)
+        <section class="w-full h-[400px] text-slate-400 text-2xl font-ubuntu font-bold flex flex-col gap-4 justify-center items-center">
+          Aucun utilisateur en attente de validation
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-20 text-green-800">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
+          </svg>
+        </section>
+      @else
+        @foreach($usersNonVerifies as $key => $value)
+          @include('components.vadation-card', [
+            'user' => $value
+          ])
+        @endforeach
+      @endif
     </section>
 
     <section x-show="activeTab === 'litiges'" class="py-4">
