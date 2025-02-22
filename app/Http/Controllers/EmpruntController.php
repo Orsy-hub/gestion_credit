@@ -7,8 +7,13 @@ use App\Models\Emprunt;
 
 class EmpruntController extends Controller
 {
+
+    public function create () {
+        return view('emprunteurs.create');
+    }
     //
     public function index () {
+
         // Filtre tous les emprunts en relation avec l'emprunteur
         $emprunts = Emprunts::whereHas('emprunteur', function($query) {
             // Applique le filtre sur la table users en gardant uniquement
@@ -17,26 +22,43 @@ class EmpruntController extends Controller
             $query->where('role', 'Bayeur');
         })->get();
 
+
         // La vue qui va recevoir les emprunts
-        return view('index');
+        return view('emprunts.index', compact('emprunts'));
     }
 
-    public function store (Request $request) {
-        // 
+
+    // Fonction pour enregistrer les emprunts
+    public function store(Request $request)
+    {
+        // Validation des données du formulaire
         $validated = $request->validate([
-            'montant' => 'required|numeric|min:100',
-            'date_emprunt' => 'required|date|after:montant',
-            'offre_pret_id' => 'required|exists:offres_pret,id'
+            'emprunteur_id' => 'required|exists:users,id',
+            'bayeur_id' => 'required|exists:users,id',
+            'montant' => 'required|numeric|min:1000',
+            'date_emprunt' => 'required|date',
+            'status' => 'required|string',
+
         ]);
 
-        $user_id = Auth::user()->id;    // Récupérer l'id de l'utilisateur connecté
+        // Vérifier que l'emprunteur est bien un emprunteur et le bayeur un bayeur
+        $emprunteur = User::where('id', $validated['emprunteur_id'])->where('role', 'Emprunteur')->first();
+        $bayeur = User::where('id', $validated['bayeur_id'])->where('role', 'Bayeur')->first();
 
-        // Si la validation c'est bien faite, création de l'Emprunt
-        Emprunt::create([
-            'emprunteur_id' => $user_id,
+
+        // Création d'un nouvel emprunt avec les données du formulaire
+        $emprunt_data = [
+            'emprunteur_id' => $validated['bayeur_id'],
+            'bayeur_id' => $validated['emprunteur_id'],
             'montant' => $validated['montant'],
-            'date_emprunt' => now(),
-            'offre_pret_id' => $validated['offre_pret_id'],  // Vérifier que l'offre existe
-        ]);
+            'date_emprunt' => $validated['date_emprunt'],
+            'status' => 'required|in:en_attente,valide,en_cours,rembourse,refuse,annule,litige',
+        ];
+
+        $emprunt = Emprunt::create($emprunt_data);
+
+        // Redirection avec un message de succès
+        return redirect()->back()->with('success', 'Emprunt créé avec succès.');
     }
+
 }
