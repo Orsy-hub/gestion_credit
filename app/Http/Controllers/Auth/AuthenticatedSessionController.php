@@ -24,17 +24,30 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // Authentifie l'utilisateur.
         $request->authenticate();
 
+        // Recuperation de l'utilsateur actuellement authentifie.
+        $user = Auth::user();
+
+        // Verifie si l'inscription de cette utilisateur a ete 'valide' (verifier = 1).
+        if ($user->verifier != 1) {
+            // Deconnexion de l'utilisateur.
+            Auth::logout();
+
+            // Redirige avec un message d'erreur.
+            return redirect()->route('login')->withErrors([
+                "verifier" => "Veillez patienter la validation de votre inscription par l'admin avant de vous connecter!"
+            ]);
+        }
+
+        // Lorsque son inscription a ete valider generation de la session.
         $request->session()->regenerate();
-// il faut exécuter la méthode authentificated
-        // return $this->authentificated($request, Auth::user());
-
-        // Diriger vers home
+        
+        // Redirection vers l'accueil.
         return redirect()->route('home', [
-            'user' => Auth::user()
+            'user' => $user
         ]);
-
     }
 
     // protected function authentificated (Request $request, $user){
