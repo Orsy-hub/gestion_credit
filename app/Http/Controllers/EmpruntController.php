@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Emprunt;
-<<<<<<< HEAD
 use App\Models\OffrePret;
-=======
->>>>>>> feature/responsif
 use Illuminate\Http\Request;
 use App\Models\User;
 
