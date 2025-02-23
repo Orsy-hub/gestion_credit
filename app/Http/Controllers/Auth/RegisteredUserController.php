@@ -64,13 +64,4 @@ class RegisteredUserController extends Controller
 
         return redirect(route('home'));
     }
-
-    // Methode qui récupère les users en attente ou validés depuis la base de données
-    public function home () {
-
-        $user_attentes = User::where('verifier', false)->get();  // Users en attente
-        $user_valides = User::where('verifier', true)->get(); // Users validés
-
-        return view('home', compact('user_attentes', 'user_valides'));
-    }
 }

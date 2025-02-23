@@ -1,7 +1,7 @@
 <div 
   x-show="isOpen" 
   x-cloak
-  class="fixed inset-0 bg-black/50 flex items-center justify-center w-full p-10"
+  class="fixed inset-0 bg-black/50 flex items-center justify-center w-full p-4 sm:p-10"
   @click="isOpen = false"
 >
   <div 

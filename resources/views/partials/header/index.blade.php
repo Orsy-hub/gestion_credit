@@ -8,20 +8,7 @@
         <strong class="hidden sm:block">{{ config('app.name') }}</strong>
       </a>
     </div>
-    <form action="" class="border-b hidden sm:flex sm:items-center">
-      <input 
-        type="search" 
-        name="search" 
-        id="search" 
-        placeholder="Recherhcer un contract"
-        class="border-none border-b"
-        />
-      <button>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-        </svg>
-      </button>
-    </form>
+    
     <div class="flex items-center gap-10">
       <form method="POST" action="{{ route('logout') }}">
         @csrf
@@ -53,7 +40,7 @@
           x-cloak
           x-show="open"
           x-transition.opacity
-          class="absolute border top-5 right-2 w-[400px] h-[700px] z-30 p-5 bg-slate-100 shadow-md rounded-lg"
+          class="absolute border top-0 right-0 sm:top-5 sm:right-2 w-[85%] sm:w-[400px] h-[700px] z-30 p-5 bg-slate-100 shadow-md rounded-l-lg"
         >
           <span class="flex justify-end">
             <button @click="open = false" class="text-slate-900 transition-colors duration-300 hover:text-slate-600 active:text-slate-100">
@@ -80,7 +67,7 @@
                   Contracts d'emprunt
                 </strong>
               </a>
-              @if($user->role === 'Bayeur')
+              @if($current_user->role === 'Bayeur')
                 <a @click="open = false" href="{{ route('offres.index') }}" class="flex items-center gap-2">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />

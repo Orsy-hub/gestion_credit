@@ -11,12 +11,12 @@
   </div>
 
   <!-- Contenu principal -->
-  <div class="relative z-10 max-w-3xl bg-white p-8 rounded-lg shadow-md text-center">
+  <div class="relative z-10 max-w-3xl mx-3 bg-white p-8 rounded-lg shadow-md text-center">
     <div class="flex items-center gap-5">
       <!-- Avatar -->
-      <div class="relative w-[80px] h-[70px] rounded-full bg-slate-100 overflow-hidden">
-        @if($user->image)
-          <img class="w-full h-full object-cover" src="{{ asset('storage/'. Auth::user()->image) }}" alt="Photo de profil {{ Auth::user()->role }}">
+      <div class="relative w-[80px] h-[55px] sm:w-[80px] sm:h-[70px] rounded-full bg-slate-100 overflow-hidden">
+        @if($current_user->image)
+          <img class="w-full h-full rounded-full object-cover" src="{{ asset('storage/'. Auth::user()->image) }}" alt="Photo de profil {{ Auth::user()->role }}">
         @else
           <span class="w-full h-full flex items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-[80px] text-gray-500">
@@ -27,18 +27,18 @@
       </div>
 
       <!-- Message de bienvenue -->
-      <h1 class="text-3xl w-full text-center font-bold text-green-800">
-        @if ($user->role === 'Bayeur')
-            Bienvenue, {{ $user->name }} ! 💰
+      <h1 class="sm:text-3xl w-full text-center font-bold text-green-800">
+        @if ($current_user->role === 'Bayeur')
+            Bienvenue, {{ $current_user->name }} ! 💰
         @else
-            Bienvenue, {{ $user->name }} ! 🤝
+            Bienvenue, {{ $current_user->name }} ! 🤝
         @endif
       </h1>
     </div>
 
     <!-- Texte descriptif -->
-    <p class="text-gray-700 mt-4">
-      @if ($user->role === 'Bayeur')
+    <p class="text-gray-700 text-sm mt-4">
+      @if ($current_user->role === 'Bayeur')
           Gérez vos offres de prêts et trouvez des emprunteurs en toute confiance. 
           Maximisez vos profits en soutenant des projets sérieux !
       @else

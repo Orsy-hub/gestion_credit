@@ -1,5 +1,5 @@
 <div class="space-y-10 md:space-y-16">
-  <article class="flex flex-col lg:flex-row lg:gap-10 lg:p-8 pb-8 md:pb-16 border-b">
+  <article class="flex flex-col gap-5 lg:flex-row lg:gap-10 lg:p-8 pb-8 md:pb-16 border-b">
     <div class="lg:w-[400px] lg:h-auto flex items-center justify-center flex-col gap-2 text-slate-400 bg-slate-100 transition-colors duration-300 hover:text-slate-600 hover:bg-slate-300 p-5 cursor-pointer rounded-xl">
       @if($offre->bayeur->image)
         <img class="w-[90px] h-[90px] transition-all duration-300 hover:w-[120px] hover:h-[120px] rounded-full object-cover" src="{{ asset('storage/'. $offre->bayeur->image) }}" alt="Photo de profil {{ Auth::user()->role }}">
@@ -22,7 +22,7 @@
     
     <section class="bg-gray-100 flex flex-col gap-6 px-6 py-8 rounded-xl shadow-md">
       <!-- Titre de l'offre -->
-      <h1 class="relative w-max font-bold font-viga text-slate-900 text-3xl lg:text-4xl leading-tight cursor-pointer 
+      <h1 class="relative w-min sm:w-max font-bold font-viga text-slate-900 text-3xl lg:text-4xl leading-tight cursor-pointer 
         after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-blue-600 after:scale-x-0 
         after:origin-left after:transition-transform after:duration-300 hover:after:scale-x-100">
         {{ $offre->titre }}
@@ -51,7 +51,7 @@
       </div>
     
       <!-- Bouton pour signer le contrat -->
-      @if($user->role == 'Emprunteur')
+      @if($current_user->role == 'Emprunteur')
         <form class="flex justify-center">
           <button class="flex items-center justify-center gap-3 w-[240px] py-3 text-lg font-semibold bg-blue-600 
             hover:bg-blue-700 active:bg-blue-500 transition duration-300 text-white rounded-full shadow-md">
