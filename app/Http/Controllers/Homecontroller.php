@@ -18,7 +18,7 @@ class Homecontroller extends Controller
         // Recuperation de toutes les offres d'emprunt.
         $offres = OffrePret::with('bayeur')->get();
         return view('home.index', [
-            'user' => Auth::user(),
+            'current_user' => Auth::user(),
             'offres' => $offres
         ]);
     }

@@ -25,9 +25,13 @@ Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> feature/responsif
 // Route de direction vers la page d'accueil.
 Route::get('/', [Homecontroller::class, 'index'])->middleware('auth')->name('home');
+
 
 // Route de direction vers la page des contracts.
 Route::get('/contracts', function (){
@@ -35,10 +39,13 @@ Route::get('/contracts', function (){
 })->name('contracts');
 
 
+<<<<<<< HEAD
 // Route pour la creation de contracts d'emprunts.
 Route::post('/emprunts', [EmpruntController::class, 'store'])->name('emprunts.store');
 
 
+=======
+>>>>>>> feature/responsif
 // Route de direction vers la page d'offres.
 Route::get('/offres', [OffrePretController::class, 'index'])->name('offres.index');
 // Route pour la creation de nouvelle offre d'emprunt.

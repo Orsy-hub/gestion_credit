@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('titre', 100)->after('bayeur_id');
             $table->longText('conditions')->nullable()->after('titre');
             $table->date('date_limite')->nullable()->after('date_offre');
-
         });
     }
 

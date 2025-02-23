@@ -69,7 +69,10 @@ class RegisteredUserController extends Controller
 
         return redirect(route('home'));
     }
+<<<<<<< HEAD
 
     // Methode qui récupère les users en attente ou validés depuis la base de données
     
+=======
+>>>>>>> feature/responsif
 }
