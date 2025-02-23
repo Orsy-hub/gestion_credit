@@ -8,6 +8,7 @@ use App\Http\Controllers\DashBoardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\EmpruntController;
 use App\Http\Controllers\Homecontroller;
 use App\Http\Controllers\OffrePretController;
 
@@ -25,11 +26,6 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 
 
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashEmprunt', [DashboardController::class, 'emprunteur'])->name('dashEmprunteur');
-    Route::get('/dashBayeur', [DashboardController::class, 'bayeur'])->name('dashBayeur');
-});
-
 // Route de direction vers la page d'accueil.
 Route::get('/', [Homecontroller::class, 'index'])->middleware('auth')->name('home');
 
@@ -37,6 +33,11 @@ Route::get('/', [Homecontroller::class, 'index'])->middleware('auth')->name('hom
 Route::get('/contracts', function (){
     return view('contracts.index');
 })->name('contracts');
+
+
+// Route pour la creation de contracts d'emprunts.
+Route::post('/emprunts', [EmpruntController::class, 'store'])->name('emprunts.store');
+
 
 // Route de direction vers la page d'offres.
 Route::get('/offres', [OffrePretController::class, 'index'])->name('offres.index');
