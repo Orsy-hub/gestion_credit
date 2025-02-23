@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Emprunt;
+use Illuminate\Http\Request;
+use App\Models\User;
 
 class EmpruntController extends Controller
 {
@@ -14,9 +15,8 @@ class EmpruntController extends Controller
     //
     public function index () {
 
-        // Filtre tous les emprunts en relation avec l'emprunteur
-        $emprunts = Emprunts::whereHas('emprunteur', function($query) {
-            // Applique le filtre sur la table users en gardant uniquement
+        // Récupérer tous les emprunts leurs bayeurs et emprunteurs
+        $emprunts = Emprunt::whereHas('emprunteur', function($query) {
             $query->where('role', 'Emprunteur');
         })->whereHas('bayeur', function ($query) {
             $query->where('role', 'Bayeur');

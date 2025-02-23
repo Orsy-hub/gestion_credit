@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Emprunt extends Model
@@ -16,7 +17,7 @@ class Emprunt extends Model
 
     public function offrePret () {
         return $this->belongsTo(OffrePret::class, 'offre_pret_id');
-    }
+    } 
 
     public function payement () {
         return $this->hasMany(Payement::class, 'emprunt_id');
